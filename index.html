@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DinoShop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <h1>DinoShop</h1>
+</header>
+
+<main>
+  <section id="pantalla-productos" class="pantalla activa">
+    <h2>Productos</h2>
+    <form id="form-producto">
+  <input id="p-nombre" placeholder="Nombre" required>
+  <input id="p-precio" type="number" min="0" placeholder="Precio" required>
+  <input id="p-stock" type="number" min="0" placeholder="Cantidad" required>
+  <button type="submit">Agregar producto</button>
+</form>
+
+<ul id="lista-productos"></ul>
+  </section>
+
+  <section id="pantalla-pedidos" class="pantalla">
+    <h2>Pedidos</h2>
+    <input id="ped-cliente" placeholder="Nombre del cliente">
+
+<select id="ped-producto"></select>
+<input id="ped-cantidad" type="number" min="1" value="1">
+<button id="btn-agregar-item" type="button">Agregar al pedido</button>
+
+<ul id="lista-items"></ul>
+<p id="ped-total">Total: $0</p>
+    <button id="btn-guardar-pedido" type="button">Guardar pedido</button>
+
+<h3>Pedidos guardados</h3>
+<ul id="lista-pedidos"></ul>
+  </section>
+
+  <section id="pantalla-resumen" class="pantalla">
+    <h2>Resumen</h2>
+    <div id="resumen-contenido"></div>
+  </section>
+</main>
+
+<nav>
+  <button data-pantalla="productos" class="activa">Productos</button>
+  <button data-pantalla="pedidos">Pedidos</button>
+  <button data-pantalla="resumen">Resumen</button>
+</nav>
+  <script src="app.js"></script>
+</body>
+</html>

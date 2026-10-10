@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f4f4f8;
+  padding-bottom: 70px;
+}
+
+header {
+  background: #2d6a4f;
+  color: white;
+  padding: 12px 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+main {
+  padding: 16px;
+}
+
+.pantalla {
+  display: none;
+}
+
+.pantalla.activa {
+  display: block;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: white;
+  border-top: 1px solid #ddd;
+}
+
+nav button {
+  flex: 1;
+  padding: 16px 0;
+  border: none;
+  background: none;
+  font-size: 1rem;
+}
+
+nav button.activa {
+  color: #2d6a4f;
+  font-weight: bold;
+  border-top: 3px solid #2d6a4f;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  color: white;
+  background: #2d6a4f;
+  border: none;
+  border-radius: 8px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: white;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.borrar {
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+}
+
+#btn-agregar-item {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  color: white;
+  background: #2d6a4f;
+  border: none;
+  border-radius: 8px;
+}
+
+#ped-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+#btn-guardar-pedido {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  color: white;
+  background: #1b4332;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.estado {
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+.tarjeta {
+  background: white;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+.tarjeta .grande {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2d6a4f;
+}
