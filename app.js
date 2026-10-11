@@ -252,12 +252,17 @@ function renderResumen() {
 
 renderResumen();
 document.getElementById("btn-exportar").addEventListener("click", function () {
-  const datos = { productos: productos, pedidos: pedidos };
-  const blob = new Blob([JSON.stringify(datos)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
+  const datos = JSON.stringify({ productos: productos, pedidos: pedidos });
+  const nombre = "copia-dinoshop-" + new Date().toISOString().slice(0, 10) + ".json";
+  const archivo = new File([datos], nombre, { type: "application/json" });
+  if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
+    navigator.share({ files: [archivo], title: "Copia DinoShop" }).catch(function () {});
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([datos], { type: "application/json" }));
   const a = document.createElement("a");
   a.href = url;
-  a.download = "copia-dinoshop.json";
+  a.download = nombre;
   a.click();
   URL.revokeObjectURL(url);
 });
@@ -292,4 +297,23 @@ document.getElementById("archivo-importar").addEventListener("change", function 
   };
   lector.readAsText(archivo);
   e.target.value = "";
+});
+document.getElementById("btn-reporte").addEventListener("click", function () {
+  let vendido = 0;
+  let filas = "";
+  pedidos.forEach(function (p) {
+    if (p.estado === "entregado") vendido += p.total;
+    filas += "<tr><td>" + p.fecha + "</td><td>" + p.cliente + "</td><td>" + p.estado + "</td><td>$" + p.total + "</td></tr>";
+  });
+  let inv = "";
+  productos.forEach(function (p) {
+    inv += "<tr><td>" + p.nombre + "</td><td>$" + p.precio + "</td><td>" + p.stock + "</td></tr>";
+  });
+  document.getElementById("reporte").innerHTML =
+    "<h2>Reporte DinoShop</h2>" +
+    "<p>Fecha: " + new Date().toLocaleDateString() + "</p>" +
+    "<p><b>Total vendido: $" + vendido + "</b></p>" +
+    "<h3>Pedidos</h3><table><tr><th>Fecha</th><th>Cliente</th><th>Estado</th><th>Total</th></tr>" + filas + "</table>" +
+    "<h3>Inventario</h3><table><tr><th>Producto</th><th>Precio</th><th>Cantidad</th></tr>" + inv + "</table>";
+  window.print();
 });
