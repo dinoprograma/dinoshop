@@ -189,17 +189,9 @@ select {
   border-radius: 10px;
 }
 
-.btn-guardar {
-  color: white;
-  background: #2d6a4f;
-  border: none;
-}
 
-.btn-recuperar {
-  color: #2d6a4f;
-  background: white;
-  border: 2px solid #2d6a4f;
-}
+
+
 #reporte { display: none; }
 
 @media print {
@@ -207,4 +199,44 @@ select {
   #reporte { display: block; padding: 16px; }
   #reporte table { width: 100%; border-collapse: collapse; }
   #reporte td, #reporte th { border: 1px solid #ccc; padding: 6px; text-align: left; }
+}
+.btn-guardar {
+  color: white;
+  background: linear-gradient(135deg, #1b4332, #2d6a4f);
+  border: none;
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.4);
+}
+
+.btn-recuperar {
+  color: white;
+  background: linear-gradient(135deg, #52b788, #74c69d);
+  border: none;
+  box-shadow: 0 4px 12px rgba(82, 183, 136, 0.4);
+}
+
+.btn-peligro {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
+}
+
+.btn-guardar,
+.btn-recuperar,
+.btn-peligro {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn-guardar:active,
+.btn-recuperar:active,
+.btn-peligro:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.15);
 }

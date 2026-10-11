@@ -317,3 +317,24 @@ document.getElementById("btn-reporte").addEventListener("click", function () {
     "<h3>Inventario</h3><table><tr><th>Producto</th><th>Precio</th><th>Cantidad</th></tr>" + inv + "</table>";
   window.print();
 });
+document.getElementById("btn-reiniciar").addEventListener("click", function () {
+  const aviso = "Antes de borrar, te recomiendo tocar 'Guardar copia'.\n\n";
+  if (confirm(aviso + "¿Borrar SOLO los pedidos? (los productos se quedan)")) {
+    pedidos = [];
+    guardarPedidos();
+    renderPedidos();
+    renderResumen();
+    alert("Pedidos borrados");
+    return;
+  }
+  if (confirm("¿Borrar TODO (productos y pedidos)? No se puede deshacer.")) {
+    productos = [];
+    pedidos = [];
+    guardar();
+    guardarPedidos();
+    renderProductos();
+    renderPedidos();
+    renderResumen();
+    alert("Todo borrado");
+  }
+});
