@@ -44,6 +44,7 @@ function renderProductos() {
     li.appendChild(btn);
     lista.appendChild(li);
   });
+    llenarSelect();
 }
 
 function borrarProducto(id) {
@@ -250,3 +251,45 @@ function renderResumen() {
 }
 
 renderResumen();
+document.getElementById("btn-exportar").addEventListener("click", function () {
+  const datos = { productos: productos, pedidos: pedidos };
+  const blob = new Blob([JSON.stringify(datos)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "copia-dinoshop.json";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("btn-importar").addEventListener("click", function () {
+  document.getElementById("archivo-importar").click();
+});
+
+document.getElementById("archivo-importar").addEventListener("change", function (e) {
+  const archivo = e.target.files[0];
+  if (!archivo) return;
+  const lector = new FileReader();
+  lector.onload = function () {
+    try {
+      const datos = JSON.parse(lector.result);
+      if (!Array.isArray(datos.productos) || !Array.isArray(datos.pedidos)) {
+        alert("Este archivo no es una copia válida");
+        return;
+      }
+      if (!confirm("Esto reemplaza tus datos actuales. ¿Continuar?")) return;
+      productos = datos.productos;
+      pedidos = datos.pedidos;
+      guardar();
+      guardarPedidos();
+      renderProductos();
+      renderPedidos();
+      renderResumen();
+      alert("Copia restaurada");
+    } catch (err) {
+      alert("No se pudo leer el archivo");
+    }
+  };
+  lector.readAsText(archivo);
+  e.target.value = "";
+});
